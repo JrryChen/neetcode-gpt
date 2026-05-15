@@ -9,5 +9,5 @@ class Solution:
         # Hint: subtract max(z) for numerical stability before computing exp
         # return np.round(your_answer, 4)
         z = np.exp(z - np.max(z))
-        total = sum(z)
+        total = np.sum(z)
         return np.round(z/total, 4)
