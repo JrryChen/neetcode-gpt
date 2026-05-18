@@ -14,5 +14,5 @@ class Solution:
         # Compute mean squared error between predictions and ground truth
         # Round to 5 decimal places
         return np.round(
-            np.sum(np.square(model_prediction - ground_truth)) / len(model_prediction)
+            np.mean(np.square(model_prediction - ground_truth))
             , 5)
