@@ -18,6 +18,6 @@ class Solution:
         # y_pred: predicted probabilities (shape: n_samples x n_classes)
         # Hint: add a small epsilon (1e-7) to y_pred to avoid log(0)
         # return round(your_answer, 4)
-        return np.round((
-            -(1/len(y_pred)) * np.sum(np.sum(y_true * np.log(y_pred)))
-        ),4)
+        return np.round(
+            -(1/len(y_pred)) * np.sum(np.sum(y_true * np.log(y_pred))), 
+            4)
