@@ -18,7 +18,9 @@ class Solution:
             return np.round(
                 1 / (1 + np.exp(-perceptron)),
                 5)
-        else:
+        elif activation == 'relu':
             return np.round(
                 np.maximum(0, perceptron), 
-                5)        
+                5) 
+        else:
+            return np.round(perception, 5)               
