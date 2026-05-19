@@ -23,4 +23,4 @@ class Solution:
                 np.maximum(0, perceptron), 
                 5) 
         else:
-            return np.round(perception, 5)               
+            return np.round(perceptron, 5)               
