@@ -23,22 +23,23 @@ class Solution:
         W2 = np.array(W2)
         b2 = np.array(b2)
         y_true = np.array(y_true)
+        # Forward Pass
+        z1 = x @ W1.T + b1 # pre-activation
+        a1 = np.maximum(0, z1) # ReLU activation
+        z2 = a1 @ W2.T + b2 # Ouput
+        loss = np.mean((z2 - y_true) ** 2) 
 
-        z1 = x @ W1.T + b1
-        a1 = np.maximum(0, z1)
-        z2 = a1 @ W2.T + b2
-        loss = np.mean((z2 - y_true) ** 2)
-
+        # Backward pass
         n = len(y_true)
-        dz2 = 2 * (z2 - y_true) / n
-        dW2 = dz2.reshape(-1, 1) @ a1.reshape(1, -1)
-        db2 = dz2
-
-        da1 = dz2.reshape(1, -1) @ W2
+        dz2 = 2 * (z2 - y_true) / n # dL/dz2
+        dW2 = dz2.reshape(-1, 1) @ a1.reshape(1, -1) # dL/dW2
+        db2 = dz2 # dL/db2
+ 
+        da1 = dz2.reshape(1, -1) @ W2 # dL/da1
         da1 = da1.flatten()
-        dz1 = da1 * (z1 > 0).astype(float)
-        dW1 = dz1.reshape(-1, 1) @ x.reshape(1, -1)
-        db1 = dz1
+        dz1 = da1 * (z1 > 0).astype(float) # ReLU derivative
+        dW1 = dz1.reshape(-1, 1) @ x.reshape(1, -1) # dL/dW1
+        db1 = dz1 # dL/db1
 
         return {
             'loss': round(float(loss), 4),
